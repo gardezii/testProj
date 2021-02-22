@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "gardezii",
+    "password": "1234",
+    "database": "testdb",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "gardezii",
+    "password": "1234",
+    "database": "testdb",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "gardezii",
+    "password": "1234",
+    "database": "testdb",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
