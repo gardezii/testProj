@@ -1,0 +1,32 @@
+html
+    head
+        title= title
+    body
+        h1= message
+        div#content
+
+    script.
+      var companyList= !{JSON.stringify(list)}
+      function json2html(json) {
+        var i, ret = "";
+        ret += "<ul>";
+        for (i in json) {
+          ret += "<li>";
+          if (Array.isArray(json) && json[i].children.length) {
+            ret += json[i].name;
+            ret += json2html(json[i].children);
+          }
+          else
+            ret += json[i].name;
+          ret += "</li>";
+        }
+        ret += "</ul>";
+        return ret;
+      }
+
+      (function () {
+        // your page initialization code here
+        // the DOM will be available here
+        document.getElementById("content").innerHTML = json2html(companyList)
+
+      })();
