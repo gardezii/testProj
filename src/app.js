@@ -11,6 +11,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.set('views', './views');
+app.set('view engine', 'pug');
 
 // amazon-cognito-identity-js is a js library meant for web browser and uses fetch function
 // nodejs don’t have fetch in built we have to emulate it like that

@@ -24,23 +24,12 @@ class GetCompanyHierarchyController extends BaseController {
    * @return {Promise<*>}
    */
   async executeImpl (req, res, next) {
-    try {
-      /**
-       * Get company list
-       */
-      const companyList = await this.companyService.getCompanyHierarchy();
+    /**
+     * Get company list
+     */
+    const companyList = await this.companyService.getCompanyHierarchy();
 
-      return responseHandler.successResponse(
-        res,
-        200,
-        '',
-        'Company hierarchy list',
-        companyList
-      )
-    } catch (err) {
-      //  catches and sends error response
-      return responseHandler.errorResponse(res, 400, err.message, err.description)
-    }
+    res.render('./company/index', { list: companyList, title: "Hello World", message: "testing project" });
   }
 }
 
