@@ -1,6 +1,5 @@
 const BaseController = require('../baseController');
-const { CompanyService } = require('../../services/');
-const { responseHandler } = require('../../utils')
+const { CompanyService, UserService } = require('../../services/');
 
 /**
  * GetCompanyHierarchy
@@ -14,6 +13,7 @@ class GetCompanyHierarchyController extends BaseController {
   constructor() {
     super();
     this.companyService = new CompanyService();
+    this.userService = new UserService();
   }
 
   /**
@@ -28,8 +28,9 @@ class GetCompanyHierarchyController extends BaseController {
      * Get company list
      */
     const companyList = await this.companyService.getCompanyHierarchy();
+    const userList = await this.userService.getAllUsers();
 
-    res.render('./company/index', { list: companyList, title: "Hello World", message: "testing project" });
+    res.render('./company/index', { list: companyList, title: "Employee Manager Hierarchy", message: "", userList: userList });
   }
 }
 

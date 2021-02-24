@@ -2,17 +2,32 @@
  * Company Service
  */
 
-const User = require('../../models/user')
+const UserService = require('./userService');
 
 class CompanyService {
+
+  /**
+   * class constructor
+   */
+  constructor() {
+    this.userService = new UserService();
+  }
 
   /**
    * Get company hierarchy
    */
   async getCompanyHierarchy() {
-    let map = {}, node, roots = [], index;
-    const users = await User.findAll({raw: true});
+    const users = await this.userService.getAllUsers();
+    return this.convertDataToTree(users);
+  }
 
+  /**
+   * Convert the data into a tree form
+   * @param users
+   * @return {Array}
+   */
+  convertDataToTree(users) {
+    let map = {}, node, roots = [], index;
     for (index = 0; index < users.length; index += 1) {
       map[users[index].id] = index; // initialize the map
       users[index].children = []; // initialize the children
@@ -27,7 +42,6 @@ class CompanyService {
         roots.push(node);
       }
     }
-
     return roots;
   }
 }

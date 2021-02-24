@@ -1,11 +1,13 @@
+const User = require('../../models/user')
+
 class UserService {
 
     /**
      * Get employee hierarchy
      * @return {Promise<void>}
      */
-    async getEmployeeHierarchy() {
-
+    async getAllUsers() {
+        return await User.findAll({raw: true});
     }
 }
 

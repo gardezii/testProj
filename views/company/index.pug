@@ -3,10 +3,30 @@ html
         title= title
     body
         h1= message
+
+        h3 UnStructured Data
+
+        table.table.table-striped
+            tr
+                th id
+                th name
+                th manager ID
+
+            each n in userList
+                tr
+                    td= n.id
+                    td= n.name
+                    if n.manager_id == null
+                        td No Manager
+                    else
+                        td= n.manager_id
+
+        h3 Structured Data
         div#content
 
     script.
       var companyList= !{JSON.stringify(list)}
+      var userList= !{JSON.stringify(userList)}
       function json2html(json) {
         var i, ret = "";
         ret += "<ul>";
